@@ -1,0 +1,25 @@
+{
+  "name": "typescript-app",
+  "version": "1.0.0",
+  "description": "New Typescript Project",
+  "main": "index.js",
+  "scripts": {
+          "start:build": "tsc -w",
+          "start:run": "nodemon build/index.js",
+          "start": "concurrently npm:start:*",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnkoaa/typescript-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rnkoaa/typescript-app/issues"
+  },
+  "homepage": "https://github.com/rnkoaa/typescript-app#readme",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}

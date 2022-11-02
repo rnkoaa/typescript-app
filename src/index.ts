@@ -1,4 +1,8 @@
+import * as dotenv from 'dotenv'
 
+export default function main() {
+	dotenv.config()
+}
 class Hello {
 
 	static hellos: Set<string> = new Set()
@@ -13,5 +17,7 @@ class Hello {
 		console.log(Hello.hellos)
 	}
 }
+
+
 
 new Hello().sayHello()

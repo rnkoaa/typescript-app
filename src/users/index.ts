@@ -1,28 +1,16 @@
-
 export interface User {
-
+  id: number;
+  name: string;
 }
 
-export interface Address {
+export interface Address {}
 
-}
+export interface Company {}
 
-export interface Company {
+export interface Comment {}
 
-}
+export interface Album {}
 
-export interface Comment {
+export interface Post {}
 
-}
-
-export interface Album {
-
-}
-
-export interface Post {
-	
-}
-
-export interface Todo {
-	
-}
+export interface Todo {}

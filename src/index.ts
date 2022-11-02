@@ -1,23 +1,22 @@
-import * as dotenv from 'dotenv'
+import * as dotenv from "dotenv";
+import { Db } from "./db";
 
 export default function main() {
-	dotenv.config()
+  dotenv.config();
 }
 class Hello {
+  _db: Db;
+  constructor() {
+    this._db = new Db();
+  }
 
-	static hellos: Set<string> = new Set()
-
-	sayHi (): void {
-		Hello.hellos.add("hi " + Date())
-	}
-
-	sayHello(): void {
-		Hello.hellos.add("hello " + Date())
-		this.sayHi()
-		console.log(Hello.hellos)
-	}
+  async main(): Promise<void> {
+    await this._db.onLoad();
+    const users = this._db.users?.findById(1);
+    console.log(`Users => ${JSON.stringify(users)}`);
+  }
 }
 
-
-
-new Hello().sayHello()
+(async () => {
+  await new Hello().main();
+})();

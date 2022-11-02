@@ -5,12 +5,26 @@ export interface User {
 
 export interface Address {}
 
-export interface Company {}
+export interface Company {
+  id: number;
+}
 
-export interface Comment {}
+export interface Comment {
+  id: number;
+}
 
-export interface Album {}
+export interface Album {
+  id: number;
+}
 
-export interface Post {}
+export interface Photo {
+  id: number;
+}
 
-export interface Todo {}
+export interface Post {
+  id: number;
+}
+
+export interface Todo {
+  id: number;
+}

@@ -19,7 +19,8 @@ export class UserService {
 
   findById(id: number): User | null {
     const found = this.userDataMap.get(id);
-    if (!found) { // cuz it could be undefined
+    if (!found) {
+      // cuz it could be undefined
       return null;
     }
     return found;

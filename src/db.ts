@@ -1,17 +1,25 @@
 // import path from "path";
 import { promises as fs } from 'fs';
 import { UserService } from "./users/user-service";
-import { User } from "./users";
+import { Album, User } from "./users";
 import path from "path";
+import { AlbumService } from './albums/album-service';
 
 export class Db {
   users?: UserService 
+  albums?: AlbumService
+  // comments?: CommentService
+  // photos?: PhotoService
+  // posts?: PostService
+  // todos?: TodoService
 
   constructor() { }
 
   async onLoad(): Promise<void> {
     const userData: User[] = await this._loadData<User>("users");
+    const albumData: Album[] = await this._loadData<Album>("albums");
     this.users = new UserService(userData)
+    this.albums = new AlbumService(albumData)
   }
 
   private async _loadData<T>(context: string): Promise<T[]> {

@@ -1,4 +1,3 @@
-// import path from "path";
 import { promises as fs } from "fs";
 import { UserService } from "./users/user-service";
 import { Album, Todo, User, Post, Photo, Comment } from "./users";

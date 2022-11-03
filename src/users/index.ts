@@ -10,7 +10,7 @@ export interface User {
 }
 
 export interface Address {
-    string: string;
+    street: string;
     suite?: string;
     city: string;
     zipcode: string;

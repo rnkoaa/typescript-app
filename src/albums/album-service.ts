@@ -1,12 +1,15 @@
-import { Album } from "../users";
+import { PhotoService } from "../photos/photo-service";
+import { Album, Photo } from "../users";
 
 export class AlbumService {
 
   private readonly albumData: Album[]
+  private readonly photoService: PhotoService
   private readonly albumDataMap: Map<number, Album | null>;
 
-  constructor(_albumData: Album[]) {
+  constructor(_albumData: Album[], _photoService: PhotoService) {
     this.albumData = _albumData;
+    this.photoService = _photoService
     this.albumDataMap = new Map(
       _albumData.map((obj) => {
         return [obj.id, obj];
@@ -25,5 +28,14 @@ export class AlbumService {
       return null;
     }
     return found;
+  }
+
+
+  findByUser(userId: number): Album[] {
+return this.albumData.filter((album) => album.userId === userId)
+  }
+
+  findAlbumPhotos(albumId: number): Photo[] {
+    return this.photoService.findForAlbum(albumId)
   }
 }

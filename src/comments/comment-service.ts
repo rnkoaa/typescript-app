@@ -25,4 +25,8 @@ export class CommentService {
     }
     return found;
   }
+
+  findByPost(postId: number) : Comment[]{
+    return this.commentData.filter(c => c.postId === postId)
+  }
 }

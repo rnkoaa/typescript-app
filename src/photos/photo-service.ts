@@ -26,4 +26,8 @@ export class PhotoService {
     }
     return found;
   }
+
+findForAlbum(albumId: number): Photo[]{
+  return this.photoData.filter(p => p.albumId === albumId)
+}
 }

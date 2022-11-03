@@ -1,25 +1,37 @@
 // import path from "path";
 import { promises as fs } from 'fs';
 import { UserService } from "./users/user-service";
-import { Album, User } from "./users";
+import { Album, Todo, User, Post, Photo, Comment } from "./users";
 import path from "path";
 import { AlbumService } from './albums/album-service';
+import { CommentService } from './comments/comment-service';
+import { PhotoService } from './photos/photo-service';
+import { TodoService } from './todos/todo-service';
+import { PostService } from './posts/post-service';
 
 export class Db {
   users?: UserService 
   albums?: AlbumService
-  // comments?: CommentService
-  // photos?: PhotoService
-  // posts?: PostService
-  // todos?: TodoService
+  comments?: CommentService
+  photos?: PhotoService
+  posts?: PostService
+  todos?: TodoService
 
   constructor() { }
 
   async onLoad(): Promise<void> {
     const userData: User[] = await this._loadData<User>("users");
     const albumData: Album[] = await this._loadData<Album>("albums");
-    this.users = new UserService(userData)
+    const todoData: Todo[] = await this._loadData<Todo>("todos");
+    const postData: Post[] = await this._loadData<Post>("posts");
+    const commentData: Comment[] = await this._loadData<Comment>("comments");
+    const photoData: Photo[] = await this._loadData<Photo>("photos");
+    this.comments = new CommentService(commentData)
     this.albums = new AlbumService(albumData)
+    this.posts = new PostService(postData, this.comments!)
+    this.todos = new TodoService(todoData)
+    this.photos = new PhotoService(photoData)
+    this.users = new UserService(userData, this.albums!, this.posts!, this.todos!)
   }
 
   private async _loadData<T>(context: string): Promise<T[]> {

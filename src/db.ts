@@ -27,10 +27,10 @@ export class Db {
     const commentData: Comment[] = await this._loadData<Comment>("comments");
     const photoData: Photo[] = await this._loadData<Photo>("photos");
     this.comments = new CommentService(commentData)
-    this.albums = new AlbumService(albumData)
+    this.photos = new PhotoService(photoData)
+    this.albums = new AlbumService(albumData, this.photos!)
     this.posts = new PostService(postData, this.comments!)
     this.todos = new TodoService(todoData)
-    this.photos = new PhotoService(photoData)
     this.users = new UserService(userData, this.albums!, this.posts!, this.todos!)
   }
 

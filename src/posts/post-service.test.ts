@@ -13,7 +13,6 @@ describe("PostService - ", () => {
     const db = new Db();
     await db.onLoad();
 
-
     const post = db.posts!.findById(1000000);
     expect(post).toBeNull();
   });
@@ -25,7 +24,8 @@ describe("PostService - ", () => {
     const expectedPost: Post = {
       id: 1,
       userId: 1,
-      title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      title:
+        "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
       body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
     };
 
@@ -34,12 +34,12 @@ describe("PostService - ", () => {
     expect(post).toEqual(expectedPost);
   });
 
-  test("load photos for an post from database given its id", async () => {
+  test("load comments for an post from database given its id", async () => {
     const db = new Db();
     await db.onLoad();
 
-    const photos = db.posts!.findComments(1);
-    expect(photos).not.toBeNull();
-    expect(photos.length).toEqual(5);
+    const comments = db.posts!.findComments(1);
+    expect(comments).not.toBeNull();
+    expect(comments.length).toEqual(5);
   });
 });
